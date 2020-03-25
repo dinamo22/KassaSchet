@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -80,8 +81,8 @@ namespace KassaSchet
             var excelApp = new Excel.Application();
             openFileDialog1 = new OpenFileDialog()
             {
-                FileName = "Select a xls file",
-                Filter = "xls files (*.xls)|*.xls",
+                FileName = "Select a xlsx file",
+                Filter = "xls files (*.xlsx)|*.xlsx",
                 Title = "Open excel file"
             };
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -90,11 +91,26 @@ namespace KassaSchet
                 {
                     excelApp.Workbooks.Open(openFileDialog1.FileName);
                     Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
-                    dataGridView1.Rows.Add(Convert.ToInt32(workSheet.Cells[1, "A"].Value),
-                                           Convert.ToInt32(workSheet.Cells[1, "B"].Value),
-                                           Convert.ToInt32(workSheet.Cells[1, "C"].Value), 
-                                           Convert.ToInt32(workSheet.Cells[1, "D"].Value),
-                                           Convert.ToInt32(workSheet.Cells[1, "E"].Value));
+                    //excelApp.ActiveCell.CurrentRegion.Select();
+                  
+
+                        
+
+
+                    dataGridView1.Rows.Add(Convert.ToInt32(workSheet.Cells[4, "C"].Value), 0, 0, 0, Convert.ToInt32(workSheet.Cells[4, "F"].Value));
+                    int numberosomething = 5;
+                    try
+                    {
+                        while (Convert.ToInt32(workSheet.Cells[numberosomething, "F"].Value) != 0)
+                        {
+                            dataGridView1.Rows.Add(0, 0, 0, 0, Convert.ToInt32(workSheet.Cells[numberosomething, "F"].Value));
+                            numberosomething++;
+                        }
+                    }
+                    catch(Exception exc)
+                    {
+                        //do nothing
+                    }
                     //вариант с выбором строки
                     //int numberofrows = dataGridView1.Rows.Count;
                     //dataGridView1.Rows[numberofrows-1].Cells[0].Value = Convert.ToInt32(workSheet.Cells[1, "A"].Value);
