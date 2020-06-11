@@ -107,13 +107,14 @@ namespace KassaSchet
                                                    Convert.ToInt32(workSheet.Cells[numberosomething, "F"].Value));
                             numberosomething++;
                         }
+                        MessageBox.Show("Циферки перенесены успешно!");
                     }
                     catch(Exception exc)
                     {
-                        //do nothing
+                        MessageBox.Show(exc.Message);
                     }         
                     excelApp.Quit();
-                    MessageBox.Show("Циферки перенесены успешно!");
+                    
                 }
                 catch (Exception ex)
                 {
@@ -125,7 +126,7 @@ namespace KassaSchet
                     }
                     catch (Exception xx)
                     {
-
+                        MessageBox.Show(xx.Message);
                     }
                 }
             }
